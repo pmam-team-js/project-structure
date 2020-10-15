@@ -25,6 +25,9 @@ app.use("/api", usersRoute);
 var moviesRoute = require("./api/modules/movies");
 app.use("/api", moviesRoute);
 
+var productsRoute = require("./api/modules/products");
+app.use("/api", productsRoute);
+
 // Handler errors
 app.use(logger.errorlogger);
 

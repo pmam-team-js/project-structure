@@ -1,10 +1,11 @@
 var mysql = require("mysql");
 var pool = mysql.createPool({
   connectionLimit: 10,
-  host: "127.0.0.1",
-  user: "x",
-  password: "x",
-  database: "todo",
+  host: "localhost",
+  user: "root",
+  password: "pmam@1234",
+  database: "makeinindia",
+  multipleStatements: true,
 });
 
 // const dataFromTheScaryInternet = 3
