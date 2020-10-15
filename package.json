@@ -1,0 +1,31 @@
+{
+  "name": "project-structure",
+  "version": "1.0.0",
+  "description": "Project structure for mean and mern apps",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./api/config/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmam-team-js/project-structure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmam-team-js/project-structure/issues"
+  },
+  "homepage": "https://github.com/pmam-team-js/project-structure#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.5",
+    "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  }
+}
