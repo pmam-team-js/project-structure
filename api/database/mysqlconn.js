@@ -3,8 +3,8 @@ var pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
   user: "root",
-  password: "pmam@1234",
-  database: "makeinindia",
+  password: "Matrix@0101",
+  database: "world",
   multipleStatements: true,
 });
 

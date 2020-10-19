@@ -30,20 +30,14 @@ const transporterror = new winston.transports.DailyRotateFile({
   ),
 });
 
-const transportfile = (dirname, filename) =>
-  new winston.transports.DailyRotateFile({
+const transportfile = (dirname, filename) => {
+  return new winston.transports.DailyRotateFile({
     filename: filename + "-%DATE%.log",
     datePattern: "YYYY-MM-DD-HH-MM",
     dirname: "./api/logs" + "/" + dirname,
-    format: winston.format.combine(
-      winston.format.timestamp({
-        format: "YYYY-MM-DD HH:mm:ss",
-      }),
-      winston.format.errors({ stack: true }),
-      winston.format.splat(),
-      winston.format.json()
-    ),
+    level: "info",
   });
+};
 
 module.exports.applogger = expressWinston.logger({
   transports: [transportlogger],
@@ -54,6 +48,15 @@ module.exports.errorlogger = expressWinston.errorLogger({
 });
 
 module.exports.filelogger = (dirname, filename) =>
-  winston.createLogger({
+  new winston.createLogger({
+    levels: winston.config.syslog.levels,
+    format: winston.format.combine(
+      winston.format.timestamp({
+        format: "YYYY-MM-DD HH:mm:ss",
+      }),
+      winston.format.errors({ stack: true }),
+      winston.format.splat(),
+      winston.format.json()
+    ),
     transports: [transportfile(dirname, filename)],
   });

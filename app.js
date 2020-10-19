@@ -1,3 +1,7 @@
+const expressWinston = require("express-winston");
+const winston = require("winston");
+require("winston-daily-rotate-file");
+
 const express = require("express");
 const bodyparser = require("body-parser");
 const path = require("path");
@@ -16,6 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+//log all incoming
 app.use(logger.applogger);
 
 //Routes
@@ -28,7 +34,10 @@ app.use("/api", moviesRoute);
 var productsRoute = require("./api/modules/products");
 app.use("/api", productsRoute);
 
-// Handler errors
+var countriesRoute = require("./api/modules/countries");
+app.use("/api", countriesRoute);
+
+//Handler errors
 app.use(logger.errorlogger);
 
 module.exports = app;

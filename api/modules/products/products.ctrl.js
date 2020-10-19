@@ -9,12 +9,11 @@ var filelogger = require("../../config/server-logger").filelogger(
   filename
 );
 
-async function GetProducts(req,res)
-{
-  let result =await modelProduct.GetProductsDB(req,res);
+async function GetProducts(req, res) {
+  let result = await modelProduct.GetProductsDB(req, res);
   res.json(result);
 }
 
-module.exports={
-  GetProducts
-}
+module.exports = {
+  GetProducts,
+};

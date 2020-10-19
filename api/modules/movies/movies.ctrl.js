@@ -9,6 +9,8 @@ var filelogger = require("../../config/server-logger").filelogger(
   filename
 );
 
+async function GetMovies(req, res) {}
+
 module.exports.GetMovies = async (req, res, next) => {
   await modelMovies.GetMoviesDB(req).then((result) => {
     if (result === undefined) {
@@ -17,4 +19,8 @@ module.exports.GetMovies = async (req, res, next) => {
       res.status(200).json(result);
     }
   });
+};
+
+module.exports = {
+  GetMovies,
 };
