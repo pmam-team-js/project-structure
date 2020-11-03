@@ -1,7 +1,7 @@
 const expressWinston = require("express-winston");
 const winston = require("winston");
 require("winston-daily-rotate-file");
-
+require('dotenv').config({path:'./api/config/.env'})
 const express = require("express");
 const bodyparser = require("body-parser");
 const path = require("path");
