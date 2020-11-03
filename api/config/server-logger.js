@@ -2,6 +2,8 @@ const expressWinston = require("express-winston");
 const winston = require("winston");
 require("winston-daily-rotate-file");
 
+const merge = require("deepmerge");
+
 const transportlogger = new winston.transports.DailyRotateFile({
   filename: "logger-%DATE%.log",
   datePattern: "YYYY-MM-DD",
@@ -33,7 +35,7 @@ const transporterror = new winston.transports.DailyRotateFile({
 const transportfile = (dirname, filename) => {
   return new winston.transports.DailyRotateFile({
     filename: filename + "-%DATE%.log",
-    datePattern: "YYYY-MM-DD-HH-MM",
+    datePattern: "YYYY-MM-DD",
     dirname: "./api/logs" + "/" + dirname,
     level: "info",
   });
@@ -60,3 +62,24 @@ module.exports.filelogger = (dirname, filename) =>
     ),
     transports: [transportfile(dirname, filename)],
   });
+
+module.exports.getErrorRequestObject = (req, err) => {
+  //console.log(req);
+  const request = {
+    req: {
+      method: req.method,
+      baseUrl: req.baseUrl,
+      hostname: req.hostname,
+      ip: req.ip,
+      originalUrl: req.originalUrl,
+      params: req.params,
+      body: req.body,
+      path: req.path,
+      query: req.query,
+      route: req.route,
+    },
+  };
+
+  const output = merge.all([err, request]);
+  return output;
+};

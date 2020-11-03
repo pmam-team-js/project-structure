@@ -1,5 +1,6 @@
 var path = require("path");
 var express = require("express");
+var auth = require("../../config/auth");
 var router = express.Router();
 
 var ctrlCountries = require("./countries.ctrl");
@@ -12,6 +13,6 @@ var filelogger = require("../../config/server-logger").filelogger(
   filename
 );
 
-router.route("/countries").get(ctrlCountries.GetCountries);
+router.route("/countries").get(auth.authenticate, ctrlCountries.GetCountries);
 
 module.exports = router;
